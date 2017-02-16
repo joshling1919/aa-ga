@@ -12,7 +12,14 @@
 
 <textarea cols="80" rows="20" id="query-output"></textarea>
 
+<form id="insert" >
+  WebsiteURL: <input type="text" name="websiteURL"><br>
+  Name: <input type="text" name="name"><br>
+  <input id="insertButton" type="submit" value="Submit">
+</form>
+
 <script>
+
 
   // Replace with your client ID from the developer console.
   var CLIENT_ID = "1016241232257-poaeih58senbqrjguqk5qlvaj026lkt1.apps.googleusercontent.com";
@@ -125,6 +132,24 @@ function handleProfiles(response) {
   }
 }
 
+function insertProperty(websiteURL, name) {
+  var request = gapi.client.analytics.management.webproperties.insert(
+    {
+      'accountId': '91940833',
+      'resource': {
+        'websiteUrl': 'http://www.examplepetstore.com',
+        'name': 'Example Store'
+      }
+    });
+  request.execute(function (response) { console.log(response) });
+}
+
+function handleSubmit(event) {
+  debugger;
+}
+
+var insert = document.getElementById('insert');
+insert.addEventListener('submit', handleSubmit);
 
 function queryCoreReportingApi(profileId) {
   // Query the Core Reporting API for the number sessions for

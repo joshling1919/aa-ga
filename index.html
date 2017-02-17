@@ -17,8 +17,37 @@
   <input id="insertButton" type="submit" value="Submit">
 </form>
 
+
+<script>
+
+  var CLIENT_ID = "1016241232257-poaeih58senbqrjguqk5qlvaj026lkt1.apps.googleusercontent.com";
+
+  // Set authorized scope.
+  var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
+
+
+  function authorize() {
+    // Handles the authorization flow.
+    // `immediate` should be false when invoked from the button click.
+    var authData = {
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      immediate: false
+    };
+    gapi.auth.authorize(authData, function(response) {
+      var authButton = document.getElementById('auth-button');
+      if (response.error) {
+        console.log(response);
+      }
+      else {
+        console.log(response);
+        // queryAccounts();
+      }
+    });
+  }
+</script>
 <script src="https://apis.google.com/js/client.js?onload=authorize"></script>
-<script src="./bundle.js"></script>
+
 
 
 </body>

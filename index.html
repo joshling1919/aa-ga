@@ -9,12 +9,8 @@
 
 <h1>Hello Analytics</h1>
 
-<textarea cols="80" rows="20" id="query-output"></textarea>
-
 <form id="insert" >
-  WebsiteURL: <input type="text" name="websiteURL"><br>
-  Name: <input type="text" name="name"><br>
-  <input id="insertButton" type="submit" value="Submit">
+  <button id="run">Run Script</button>
 </form>
 
 
@@ -23,7 +19,8 @@
   var CLIENT_ID = "1016241232257-poaeih58senbqrjguqk5qlvaj026lkt1.apps.googleusercontent.com";
 
   // Set authorized scope.
-  var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
+  var SCOPES = ['https://www.googleapis.com/auth/analytics.edit'];
+  // ['https://www.googleapis.com/auth/analytics.readonly'];
 
 
   function authorize() {
@@ -31,22 +28,23 @@
     // `immediate` should be false when invoked from the button click.
     var authData = {
       client_id: CLIENT_ID,
-      scope: SCOPES,
-      immediate: false
+      scope: SCOPES
     };
     gapi.auth.authorize(authData, function(response) {
-      var authButton = document.getElementById('auth-button');
+      // var authButton = document.getElementById('auth-button');
       if (response.error) {
+        console.log('error happened in auth!');
         console.log(response);
       }
       else {
+        console.log('auth good to go!');
         console.log(response);
-        // queryAccounts();
       }
     });
   }
 </script>
 <script src="https://apis.google.com/js/client.js?onload=authorize"></script>
+<script src="./input.js"></script>
 
 
 
